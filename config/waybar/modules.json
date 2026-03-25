@@ -1,0 +1,261 @@
+{
+    "group/hypr": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/arch",
+            "custom/hypr"
+         ]
+    },
+
+    "group/quicklinks": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/filemanager",
+            "custom/browser",
+            "custom/terminal"
+
+         ]
+    },
+
+    "group/time": {
+        "orientation": "horizontal",
+        "modules": [
+        "custom/timer"
+         ]
+    },
+
+"group/misc": {
+    "orientation": "inherit",
+    "drawer": {
+        "transition-duration": 500,
+        "children-class": "not-misc",
+        "transition-right-to-left": false,
+    },
+    "modules": [
+        "custom/misc",
+        "custom/swww",
+        "idle_inhibitor",
+        "custom/timer",
+        "tray"
+    ]
+},
+
+    "group/devices": {
+        "orientation": "horizontal",
+        "modules": [
+    	    "battery",
+            "pulseaudio",
+            "bluetooth",
+            "network"
+         ]
+    },
+
+    "group/system": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/copyq",
+            "custom/power"
+         ]
+    },
+
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "", // an empty format will hide the module
+        "format-connected": " {num_connections}",
+        "on-click": "blueman-manager",
+        "on-click-right": "blueman-manager",
+        "tooltip-format": " {device_alias}",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": " {device_alias}"
+    },
+
+    "custom/cliphist": {
+        "format": "󰅍{}",
+        "exec": "echo ; echo clipboard",
+        "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
+        "on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w",
+        "interval" : 86400, // once every day
+        "tooltip": true,
+        "on-scroll-up": "dunstctl close",
+        "on-scroll-down": "dunstctl history-pop"
+    },
+
+    "custom/copyq": {
+        "format": "󰅍",
+        "on-click": "copyq toggle",
+        "tooltip": false
+    },
+
+    "include": ["~/.config/waybar/clock.json"],
+
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": "󰍛 {usage}%",
+        "format-alt": "{icon0}{icon1}{icon2}{icon3}",
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+    },
+
+    "custom/padd": {
+        "format": "",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/misc": {
+        "format": " ",
+        "tooltip": false
+    },
+
+    "custom/swww": {
+        "format": "\udb83\ude09 ",
+        "on-click": "~/.config/swww/swww.sh",
+        "tooltip": "Change wallpaper"
+    },
+
+    "custom/arch": {
+        "format": "\udb82\udcc7",
+        "on-click": "~/.config/swww/swww.sh",
+        "tooltip": false
+    },
+
+    "custom/hypr": {
+        "format": "",
+        "on-click": "~/.config/swww/swww.sh",
+        "tooltip": false
+    },
+
+    "custom/filemanager": {
+        "format": " ",
+        "on-click": "dolphin",
+        "tooltip": false
+    },
+
+     "custom/terminal": {
+        "format": " ",
+        "on-click": "alacritty",
+        "tooltip": false
+    },
+
+    "custom/editor": {
+        "format": "",
+        "on-click": "geany",
+        "tooltip": false
+    },
+
+    "custom/browser": {
+        "format": " ",
+        "on-click": "firefox",
+        "tooltip": false
+    },
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "󰤨 {signalStrength}%",
+        "format-ethernet": "󱘖 Wired",
+        "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "format-linked": "󱘖 {ifname} (No IP)",
+        "format-disconnected": " Disconnected",
+        "format-alt": "󰤨 {essid}",
+        "on-click": "alacritty --class nmtui -e nmtui",
+        "interval": 5
+    },
+
+    "custom/power": {
+        "format": "{}",
+        "exec": "echo ; echo  logout",
+        "on-click": "~/.config/hypr/scripts/logoutlaunch.sh 2",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "on-click": "~/.config/hypr/scripts/waybar-vol-progbar.sh --toggle",
+        "on-click-right": "pavucontrol-qt",
+        "on-scroll-up": "~/.config/hypr/scripts/waybar-vol-progbar.sh --inc",
+        "on-scroll-down": "~/.config/hypr/scripts/waybar-vol-progbar.sh --dec",
+        "tooltip-format": "{icon} {desc}",
+        "format-icons": {
+            "headphone": ["", "", ""],
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "on-click": "pavucontrol -t 4",
+        "on-click-middle": "~/.config/hypr/scripts/volumecontrol.sh -i m",
+        "on-scroll-up": "~/.config/hypr/scripts/volumecontrol.sh -i i",
+        "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh -i d",
+        "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
+        "scroll-step": 5
+    },
+
+    "tray": {
+        "icon-size": {},
+        "spacing": 5
+    },
+
+    "hyprland/window": {
+        "format": "  {}",
+        "separate-outputs": true,
+        "rewrite": {
+            "${USER}@${set_sysname}:(.*)": "$1 ",
+            "(.*) — Mozilla Firefox": "$1 󰈹",
+            "(.*)Mozilla Firefox": "Firefox 󰈹",
+            "(.*) - Visual Studio Code": "$1 󰨞",
+            "(.*)Visual Studio Code": "Code 󰨞",
+            "(.*) — Dolphin": "$1 󰉋",
+            "(.*)Spotify": "Spotify 󰓇",
+            "(.*)Steam": "Steam 󰓓"
+        },
+        "max-length": 1000
+    },
+
+    "hyprland/workspaces": {
+        "on-scroll-up": "hyprctl dispatch workspace -1",
+        "on-scroll-down": "hyprctl dispatch workspace +1",
+        "all-outputs": true,
+        "active-only": false,
+        "on-click": "activate",
+        "persistent-workspaces": {
+            // START WORKSPACES
+    "*": 5
+            // END WORKSPACES
+        }
+    },
+
+    "battery": {
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "events": {
+            "on-discharging-warning": "notify-send -u normal 'Low Battery'",
+            "on-discharging-critical": "notify-send -u critical 'Very Low Battery'",
+            "on-charging-100": "notify-send -u normal 'Battery Full!'"
+        },
+        "format": "{icon}  {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25
+    }
+}

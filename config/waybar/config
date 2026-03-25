@@ -1,0 +1,49 @@
+{
+// Header //
+
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "height": 22,
+    "margin-top": 1,
+    "margin-bottom": 0,
+    "margin-left": 1,
+    "margin-right": 1,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+
+
+    // Load Modules
+    "include": ["~/.config/waybar/modules.json"],
+
+// Positions //
+
+	"modules-left": [
+        "group/hypr",
+        "group/r-hypr",
+        "group/l-workspaces",
+        "hyprland/workspaces",
+        "group/r-workspaces",
+        "group/l-quicklinks",
+        "group/quicklinks",
+        "group/r-quicklinks",
+    ],
+
+	"modules-center": [
+        "group/l-clock",
+        "clock",
+        "group/r-clock",
+    ],
+
+    "modules-right": [
+        "group/l-misc",
+        "group/misc",
+        "group/r-misc",
+        "group/l-devices",
+        "group/devices",
+        "group/r-devices",
+        "group/l-system",
+        "group/system"
+    ],
+}
